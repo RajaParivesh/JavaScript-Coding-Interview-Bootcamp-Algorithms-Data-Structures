@@ -3,124 +3,158 @@
 // See 'directions' document
 
 class Node {
-  constructor(data, next = null){
-      this.data = data;
-      this.next = next;
-  }
+	constructor(data, next = null){
+		this.data = data;
+		this.next = next;
+	}
 }
 
 class LinkedList {
-  
-  constructor(){
-    this.head = null; 
-  }
 
-  insertFirst(data){
-  	this.head = new Node(data, this.head);
-  }
-  
-  size(){
-  	let counter = 0;
-  	let node = this.head;
+	constructor(){
+		this.head = null;
+	}
 
-  	while(node){
-  		counter++;
-  		node = node.next;
-  	}
-  	return counter;
-  }
-  
-  getFirst(){
-  	return this.head;
-  }
-  
-  getLast(){
-  	let node = this.head;
-  	if(!node){
-  		return null;
-  	}
-  	while(node){
-  		if(!node.next){
-  		  	return node;
-  		}
-  	node = node.next;
-  	}
-  }
+	insertFirst(data){
+		this.head = new Node(data, this.head);
+	}
 
-  clear(){
+	size(){
+		let counter = 0;
+		let node = this.head;
 
-  	this.head = null;
-  	return "cleared";11
+		while(node){
+			counter++;
+			node = node.next;
+		}
+		return counter;
+	}
 
-  }
+	getFirst(){
+		return this.head;
+	}
 
-  removeFirst(){
-  	if(!this.head){
-  		return;
-  	}
-  	return this.head = this.head.next;
-  }
+	getLast(){
+		let node = this.head;
+		if(!node){
+			return null;
+		}
+		while(node){
+			if(!node.next){
+				return node;
+			}
+			node = node.next;
+		}
+	}
+
+	clear(){
+
+		this.head = null;
+		return "cleared";11
+
+	}
+
+	removeFirst(){
+		if(!this.head){
+			return;
+		}
+		return this.head = this.head.next;
+	}
 
 
-   removeLast(){
-  	
-  	if(!this.head){
-  		return;
-  	}
+	removeLast(){
 
-  	if(!this.head.next){
-  		this.head = null;
-  		return;
-  	}
-  
-  	let previous = this.head;
-  	let node = this.head.next;
-  	while(node.next){
-  		previous = node; 
-  		node = node.next;
-  	}
-  	previous.next = null;
-  }
+		if(!this.head){
+			return;
+		}
 
-  insertLast(data){
-  	if(!this.head){
-  		this.head = data;
-  	}
+		if(!this.head.next){
+			this.head = null;
+			return;
+		}
 
-  	if(!this.head.next){
-  		this.head.next = data;
-  	}
-	// while(this.head){
-
-		// if(!this.head.next){
-		// 	return this.node;
-  // 	// console.log(this.head);
-
-		// // this. = data; 
-		// break; 		
-		// }
+		let previous = this.head;
+		let node = this.head.next;
+		while(node.next){
+			previous = node;
+			node = node.next;
+		}
+		previous.next = null;
+	}
+	// // self // working //
+	// insertLast(data){
+	// 	var node = this.head;
+	// 	if(!node){
+	// 		this.head = data;
+	// 	}
+	// 	while(node){
+	// 		if(!node.next){
+	// 			console.log(node);
+	// 			node.next = {
+	// 				data:data, next:null
+	// 			};
+	// 			break;
+	// 		}
+	// 		node = node.next
+	// 	}
+	// 	console.log(node);
 	// }
-  	// return this.head;
-  }
 
+	insertLast(data){
+		const last = this.getLast();
+		if(last){
+			last.next = new Node(data);
+		}else{
+			this.head = new Node(data);
+		}
+		// console.log(this.head);
+	}
+
+	// working but takes 20ms
+	// getAt(index){
+	// 	var node = this.head;
+	// 	if(index>this.size()){
+	// 		return null;
+	// 	}else if(index==0){
+	// 		console.log(node);
+	// 		return node;
+	// 	}else{
+	// 		for(let i = 1; i <= index; i++ ){
+	// 			node = node.next;
+	// 		}
+	// 		console.log(node);
+	// 		return node;
+	// 	}
+	// }
+
+	//working and takes only 6ms // from tutorial
+	getAt(index){
+		var counter = 0;
+		var node = this.head;
+		while(node){
+			if(counter == index){
+				return node;
+			}
+			counter++;
+			node = node.next;
+		}
+		return null;
+	}
 }
 
-// LinkedList {
-//   head: Node { data: 20, next: Node { data: 10, next: null } }
-// }
 
-
-const list = new LinkedList();
-list.head = new Node(10);
-list.insertFirst(20);
-list.insertFirst(30);
-// console.log(list);
-// console.log(list.size());
-// console.log(list.getFirst());
-// console.log(list.getLast());
-// console.log(list.clear());
-// console.log(list);
-// console.log(list.removeFirst());
-// console.log(list.removeLast());
-console.log(list.insertLast(25));
-module.exports = { Node, LinkedList };
+	const list = new LinkedList();
+	list.head = new Node(10);
+	list.insertFirst(20);
+	list.insertFirst(30);
+	// console.log(list);
+	// console.log(list.size());
+	// console.log(list.getFirst());
+	// console.log(list.getLast());
+	// console.log(list.clear());
+	// console.log(list);
+	// console.log(list.removeFirst());
+	// console.log(list.removeLast());
+	// list.insertLast(26);
+	list.getAt(3);
+	module.exports = { Node, LinkedList };
