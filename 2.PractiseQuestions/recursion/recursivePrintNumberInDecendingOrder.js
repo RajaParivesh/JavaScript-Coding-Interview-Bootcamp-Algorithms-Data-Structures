@@ -1,4 +1,5 @@
-function recursivePrint(n){
+// Print the numbers from n to 0(zero) using recursion
+function recursivePrint(n){  
     if(n == 1){
         console.log(1);
         return;
