@@ -1,6 +1,6 @@
 //Question: https://www.hackerrank.com/challenges/the-power-sum/problem
 
-NOT SOLVED YET 
+// NOT SOLVED YET 
 
 function powerSum(X, P, N = 1) {
   let i_pow = Math.pow(N,P);
@@ -16,4 +16,4 @@ function powerSum(X, P, N = 1) {
 
 console.log(powerSum(7,2));
 
-NOT SOLVED YET
+// NOT SOLVED YET
